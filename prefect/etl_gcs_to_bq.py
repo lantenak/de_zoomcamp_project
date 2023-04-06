@@ -9,7 +9,7 @@ def extract_from_gcs(month : str, year : int, dataset_file: str, user: str) -> P
     ''' Download data from GCS '''
 
     gcs_path = f'data/{dataset_file}.csv'
-    gcs_block = GcsBucket.load('project-gcs')
+    gcs_block = GcsBucket.load('protected-areas-bucket')
     gcs_block.get_directory(
         from_path = gcs_path,
         local_path = f'/home/{user}/'
@@ -29,7 +29,7 @@ def not_transform(path: Path) -> pd.DataFrame:
 def write_bq(df : pd.DataFrame, project_id: str) -> None:
     ''' Write DataFrame to BigQuery '''
 
-    gcp_credentials_block = GcpCredentials.load("project-creds")
+    gcp_credentials_block = GcpCredentials.load("protected-areas")
 
     df.to_gbq(
         destination_table = 'protected_areas_raw.protected_areas',
