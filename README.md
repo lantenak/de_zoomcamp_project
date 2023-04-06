@@ -13,6 +13,22 @@ Here in project protected areas with explicitly defined year of status are only 
 
 2. What dynamics of such statuses enactment per decades?
 
+# What technologies are being used?
+
+* Cloud: [Google Cloud](https://cloud.google.com/)
+
+* Infrastructure: [Terraform](https://www.terraform.io/)
+
+* Orchestration: [Prefect](https://www.prefect.io/)
+
+* Data lake: [Google Storage](https://cloud.google.com/storage)
+
+* Data warehouse: [Google BigQuery](https://cloud.google.com/bigquery)
+
+* Data transformation: [dbt](https://www.getdbt.com/)
+
+* Data visualization: [Google Data Studio](https://datastudio.withgoogle.com/)
+
 # How to run it?
 
 Follow the instructions:
