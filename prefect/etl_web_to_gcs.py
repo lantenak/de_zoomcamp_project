@@ -28,7 +28,7 @@ def write_local(df : pd.DataFrame, user : str, dataset_file : str) -> Path:
 def write_gcs(path: Path, dataset_file: str) -> None:
     ''' Upload local csv file to GCS '''
 
-    gcs_block = GcsBucket.load('project-gcs')
+    gcs_block = GcsBucket.load('protected-areas-bucket')
     gcs_block.upload_from_path(
         from_path = path,
         to_path = Path(f'data/{dataset_file}.csv')
