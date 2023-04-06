@@ -33,6 +33,20 @@ Here in project protected areas with explicitly defined year of status are only 
 
 ![](https://github.com/lantenak/de_zoomcamp_project/blob/master/dashboard.jpg)
 
+# What is the structure of the production table?
+
+| Column  | Description |
+| ------------- | ------------- |
+| primary_key  | Unique surrogate key from name, desig_eng and status_yr data points  |
+| name  | Name of the protected area  |
+| desig_eng  | Protected area type  |
+| status_yr  | Year of enactment of status  |
+| status_dcd  | Decade of enactment of status  |
+
+* Partitioned on the `status_dcd` column - assuming that this column is more related to dates
+
+* Clustered on the `desig_eng` column - assuming that this column will be more filtered
+
 # How to run it?
 
 Follow the instructions:
