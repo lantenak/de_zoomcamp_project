@@ -1,0 +1,13 @@
+protected_areas:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: /home/lantenak/gc/lan10ak.json # Exchange with path to your Google Cloud credentials
+      project: lan10ak
+      dataset: protected_areas_dbt
+      threads: 1
+      timeout_seconds: 300
+      location: europe-west6
+      priority: interactive
