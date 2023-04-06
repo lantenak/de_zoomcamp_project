@@ -17,29 +17,61 @@ Here in project protected areas with explicitly defined year of status are only 
 
 Follow the instructions:
 1. Create Google Cloud Platform (GCP) account;
-2. Create GCP project;
-3. GCP console (left menu) -> APIs & Service -> Library -> Search engine ('
+
+
+3. Create GCP project;
+
+
+5. GCP console (left menu) -> APIs & Service -> Library -> Search engine ('
 Identity and Access Management (IAM) API') ->  Enable -> Create credentials;
+
+
 4. Create serivce account (click 'application data', pick roles 'BigQuery Admin', 'Storage Admin', 'Storage Object Admin');
-5. GCP console (left menu) -> IAM & Admin -> Service Accounts -> Select recently created -> Sidebar menu -> 'Manage keys' -> 'Add key' -> 'Create new key' -> 'JSON' -> Create;
-6. GCP console (left menu) -> Compute Engine -> VM instances -> Enable API -> Create instance -> Ubuntu (recommended);
-7. Create a folder '.ssh' in your home directory on local machine;
-8. Generate ssh keys (in a folder '.ssh'). Enter in CLI: `ssh-keygen -t rsa -f gcp -C your_name -b 2048`;
-9. Run this command in terminal: `cat gcp.pub`;
-10. Copy output;
-11. Open in GCP console 'Compute Engine' -> 'Metadata' -> 'SSH KEYS' -> 'ADD SSH KEYS';
-12. Paste the output from step 10 there;
-13. You can enter VM via this command: `ssh -i ~/.ssh/gcp your_name@External_IP_of_your_VM`;
-14. Enter VM;
-15. Download the JSON credentials and save it: `~/gc/your_credentials.json`;
-16. Run this commands:
+
+
+6. GCP console (left menu) -> IAM & Admin -> Service Accounts -> Select recently created -> Sidebar menu -> 'Manage keys' -> 'Add key' -> 'Create new key' -> 'JSON' -> Create;
+
+
+8. GCP console (left menu) -> Compute Engine -> VM instances -> Enable API -> Create instance -> Ubuntu (recommended);
+
+
+10. Create a folder '.ssh' in your home directory on local machine;
+
+
+12. Generate ssh keys (in a folder '.ssh'). Enter in CLI: `ssh-keygen -t rsa -f gcp -C your_name -b 2048`;
+
+
+14. Run this command in terminal: `cat gcp.pub`;
+
+
+16. Copy output;
+
+
+18. Open in GCP console 'Compute Engine' -> 'Metadata' -> 'SSH KEYS' -> 'ADD SSH KEYS';
+
+
+20. Paste the output from step 10 there;
+
+
+22. You can enter VM via this command: `ssh -i ~/.ssh/gcp your_name@External_IP_of_your_VM`;
+
+
+24. Enter VM;
+
+
+26. Download the JSON credentials and save it: `~/gc/your_credentials.json`;
+
+
+28. Run this commands:
 
 `export GOOGLE_APPLICATION_CREDENTIALS=<path_to_your_credentials>.json`
 
 `gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS`
 
 17. Create a folder 'data' in home directory;
-18. Clone repository (also in home directory):
+
+
+19. Clone repository (also in home directory):
 
 `git clone https://github.com/lantenak/de_zoomcamp_project`
 
@@ -50,8 +82,12 @@ Identity and Access Management (IAM) API') ->  Enable -> Create credentials;
 `bash Anaconda3-2023.03-Linux-x86_64.sh`
 
 20. Logout and login to make sure Anaconda works;
-21. Go to `~/de_zoomcamp_project/prefect/` and run the command: `pip install -r requirements.txt`;
-22. Run this commands:
+
+
+22. Go to `~/de_zoomcamp_project/prefect/` and run the command: `pip install -r requirements.txt`;
+
+
+24. Run this commands:
 
 `pip install prefect-dbt`
 
@@ -81,4 +117,22 @@ Identity and Access Management (IAM) API') ->  Enable -> Create credentials;
 
 `terraform apply -var="project=<your-gcp-project-id>"`
 
-26. 
+26. Create the prefect blocks adjusting the variables here:
+
+` cd ~/de_zoomcamp_project/prefect/prefect_blocks.py`
+
+`python prefect_blocks.py`
+
+27. Adjust the keyfile location at `dbt/profiles.yml` to the path of your Google Cloud credentials JSON, rename project;
+
+28. Adjust the database name at `dbt/models/staging/schema.yml`;
+
+29. Then execute successively the following commands, adjusting user and project_id variables:
+
+`cd ~/de_zoomcamp_project/prefect`
+
+`python etl_web_to_gcs.py`
+
+`python etl_gcs_to_bq.py`
+
+`python etl_dbt_transform.py`
