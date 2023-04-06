@@ -31,7 +31,7 @@ Here in project protected areas with explicitly defined year of status are only 
 
 # Dashboard example
 
-
+![](https://github.com/lantenak/de_zoomcamp_project/blob/master/dashboard.jpg)
 
 # How to run it?
 
