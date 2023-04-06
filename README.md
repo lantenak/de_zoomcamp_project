@@ -29,6 +29,10 @@ Here in project protected areas with explicitly defined year of status are only 
 
 * Data visualization: [Google Data Studio](https://datastudio.withgoogle.com/)
 
+# Dashboard example
+
+
+
 # How to run it?
 
 Follow the instructions:
