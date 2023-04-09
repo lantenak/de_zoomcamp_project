@@ -4,6 +4,8 @@
 
 This project explores protected areas' types and years of enactment of that status based on The World Database on Protected Areas (WDPA).
 
+With this project I aim to build an ETL pipeline. I fetch data from WDPA website, load that to Google Cloud Storage. After transformations using dbt I save data to Google BigQuery for further visualization via Google Data Studio.
+
 # What questions is this project trying to answer?
 
 Keeping in mind that expression 'protected areas' more or less on hearing, it would be interesing to know:
@@ -43,9 +45,9 @@ Here in project protected areas with explicitly defined year of status are only 
 | status_yr  | Year of enactment of status  |
 | status_dcd  | Decade of enactment of status  |
 
-* Partitioned on the `status_dcd` column - assuming that this column is more related to dates
+* Partitioned on the `status_dcd` column - assuming that this column is closely related to time unit (year) and converting year to decade of year will end up reduced number of partitions
 
-* Clustered on the `desig_eng` column - assuming that this column will be more filtered
+* Clustered on the `desig_eng` column - assuming that this column will be more filtered or aggregated
 
 # How to run it?
 
